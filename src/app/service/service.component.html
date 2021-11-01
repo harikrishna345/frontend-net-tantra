@@ -1,0 +1,79 @@
+<div class="container shadow p4">
+    <div class="d-flex justify-content-center mt-3 mb-3"><img height="50px"
+            src="https://cdn.nettantra.net/wp-content/uploads/2019/10/nettantra-logo-2019.svg" alt="">
+    </div>
+    <h5 class="text-info">Service Registration</h5>
+    <form [formGroup]="serviceForm">
+        <div class="form-group">
+            <label for="exampleInputPassword1">Service Type</label>
+            <select class="form-select" aria-label="Default select example" formControlName="serviceType">
+                <option>--Select--</option>
+                <option value="1"><b>Bike Repair Service</b> </option>
+                <option value="2"> <b>Engine Service</b> </option>
+                <option value="3"><b>Brake Service</b> </option>
+                <option value="4"><b>Inspection & Checks</b> </option>
+                <option value="5"><b>Tyre Service</b> </option>
+            </select>
+        </div>
+        <div class="form-group mt-2">
+            <label for="exampleInputPassword1">Date</label>
+            <input type="date" class="form-control" formControlName="date"
+                [ngClass]="{ 'is-invalid': submitted && lf.date.errors}">
+            <div *ngIf="submitted && lf.date.errors" class="invalid-feedback">
+                <div *ngIf="lf.date.errors.required">Date is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Available Slots</label>
+            <div class="radio-toolbar  paddingStyle radioToolbar" style="display: flex;">
+                <input type="radio" name="slot" id="slot1" class="radio" value="1" checked />
+                <label for="slot1" id='1'><span class="dot"></span>9AM - 12PM
+                </label>
+                <input type="radio" name="slot" id="slot2" value="2" class="radio" />
+                <label for="slot2" id='2'><span class="dot"></span>1PM - 3PM
+                </label>
+                <input type="radio" name="slot" id="slot3" value="3" class="radio mt-3" />
+                <label for="slot3" id='3'><span class="dot"></span>3PM - 6PM</label>
+            </div>
+            <div class="form-group mt-2">
+                <label for="exampleInputPassword1">Owner Name</label>
+                <input type="text" class="form-control" formControlName="ownerName"
+                    [ngClass]="{ 'is-invalid': submitted && lf.ownerName.errors}">
+                <div *ngIf="submitted && lf.ownerName.errors" class="invalid-feedback">
+                    <div *ngIf="lf.ownerName.errors.required">Owner name is required</div>
+                </div>
+            </div>
+            <div class="form-group mt-2">
+                <label for="exampleInputPassword1">Phone</label>
+                <input type="text" class="form-control" formControlName="phone"
+                    [ngClass]="{ 'is-invalid': submitted && lf.phone.errors}">
+                <div *ngIf="submitted && lf.phone.errors" class="invalid-feedback">
+                    <div *ngIf="lf.phone.errors.required">Phone is required</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Contact Email address</label>
+            <input type="email" class="form-control" formControlName="email" aria-describedby="emailHelp"
+                [ngClass]="{ 'is-invalid': submitted && lf.email.errors}">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                else.</small>
+            <div *ngIf="submitted && lf.email.errors" class="invalid-feedback">
+                <div *ngIf="lf.email.errors.required">Email is required</div>
+                <div *ngIf="lf.email.errors.email">Email must be a valid email address</div>
+            </div>
+        </div>
+        <div class="form-group mt-2">
+            <label for="exampleInputPassword1">Address</label>
+            <input type="text" class="form-control" formControlName="addres"
+                [ngClass]="{ 'is-invalid': submitted && lf.addres.errors}">
+            <div *ngIf="submitted && lf.addres.errors" class="invalid-feedback">
+                <div *ngIf="lf.addres.errors.required">Address is required</div>
+            </div>
+        </div>
+        <p class="text-danger mt-3">{{error}}</p>
+        <button type="submit" class="btn btn-primary mt-3 mb-3 d-flex  justify-content-end" (click)="signUp()">Book
+            Service</button>
+        <p class="text-success mt-3 text-center"><b>{{suc}}</b> </p>
+    </form>
+</div>

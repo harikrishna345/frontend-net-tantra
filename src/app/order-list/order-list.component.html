@@ -1,0 +1,73 @@
+<div class="container mt-5">
+
+    <h2 class="text-center mb-3">Orders List</h2>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Service Type</th>
+                <th scope="col">Owner Name</th>
+                <th scope="col">Order placed Date&Time</th>
+                <th scope="col">Shedule Date</th>
+                <th scope="col">Slot Time</th>
+                <th scope="col">Email</th>
+                <th scope="col">Phone</th>
+                <th scope="col">Address</th>
+                <th scope="col"><span *ngIf="userRole =='2'">Status</span> <span *ngIf="userRole =='1'">Action</span>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let item of userOrdersList;let i =index">
+                <th scope="row">{{i+1}}</th>
+                <td><span *ngIf="item.serviceType =='1'">Bike Repair Service</span><span
+                        *ngIf="item.serviceType =='2'">Engine Service</span><span *ngIf="item.serviceType =='3'">Brake
+                        Service</span><span *ngIf="item.serviceType =='4'">Inspection & Checks</span><span
+                        *ngIf="item.serviceType =='5'">Tyre Service</span></td>
+                <td>{{item.ownerName}}</td>
+                <td>{{item.createdAt}}</td>
+                <td>{{item.date}}</td>
+                <td><span *ngIf="item.slot =='1'" class="text-info">9AM - 12PM</span><span *ngIf="item.slot =='2'"
+                        class="text-info">1PM - 3PM</span><span *ngIf="item.slot =='3'" class="text-info">3PM -
+                        6PM</span></td>
+                <td>{{item.email}}</td>
+                <td>{{item.phone}}</td>
+                <td>{{item.addres}}</td>
+                <td><span *ngIf="userRole =='2'">
+                        <span *ngIf="item.status =='1'" class="text-warning">Reviewing</span><span
+                            *ngIf="item.status =='2'" class="text-success">Accepted Order, Soon start working on
+                            it!</span><span *ngIf="item.status =='3'" class="text-warning">Declined</span>
+                        <span *ngIf="item.status =='5'" class="text-success"><b>Ready to Delivery</b></span>
+                        <span *ngIf="item.status =='4'" class="text-info">Working In progress</span>
+                        <span *ngIf="item.status =='3'" class="text-danger">Service Not Availble Now</span>
+                    </span>
+                    <span *ngIf="userRole =='1'" style="text-align: center;">
+                        <span *ngIf="item.status =='1'">
+                            <button type="button" class="btn btn-danger btn-sm mt-2" style="margin-right: 10px;"
+                                (click)="updateStatus(item,3)">Not
+                                Availble</button>
+                            <button type="button" class="btn btn-success btn-sm mt-2"
+                                (click)="updateStatus(item,2)">Accept</button>
+                        </span>
+                        <span *ngIf="item.status =='2'">
+                            <button type="button" class="btn btn-success btn-sm mt-2" (click)="updateStatus(item,4)">Start
+                                Working</button>
+                        </span>
+                        <span *ngIf="item.status =='3'">
+                            <button type="button" class="btn btn-success btn-sm mt-2"
+                                (click)="updateStatus(item,1)">Available Now</button>
+                        </span>
+                        <span *ngIf="item.status =='4'">
+                            <button type="button" class="btn btn-success btn-sm mt-2" (click)="updateStatus(item,5)">Ready To
+                                Delivery</button>
+                        </span>
+                        <span *ngIf="item.status =='5'">
+                            <p class="text-success"><b>Service Done</b></p>
+                        </span>
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

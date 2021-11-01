@@ -1,0 +1,23 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <h1 class="text-center mt-3">Our Services</h1>
+            <div id="news-slider" class="owl-carousel">
+                <div class="card " style="height: 100% !important;" *ngFor="let item of collection">
+                    <img style="border-radius: 5px;" src="{{item.img}}" alt="">
+                    <div class="card-body">
+                        <h5 class="card-title text-center">{{item.title}}</h5>
+                        <p class="card-text">{{item.des}}</p>
+
+                        <div class=" text-center">
+                            <button type="button" class="btn btn-outline-info" (click)="bookService(item.id)">Book Service</button>
+                        </div>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

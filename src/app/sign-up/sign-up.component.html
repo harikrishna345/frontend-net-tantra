@@ -1,0 +1,40 @@
+<div class="container shadow p4">
+    <div class="d-flex justify-content-center mt-1 mb-3"><img height="50px"
+            src="https://cdn.nettantra.net/wp-content/uploads/2019/10/nettantra-logo-2019.svg" alt="">
+    </div>
+    <h5 class="">Create An Account</h5>
+    <form [formGroup]="signUpForm">
+
+        <div class="form-group">
+            <label for="exampleInputPassword1">Your Name</label>
+            <input type="text" class="form-control" formControlName="userName"
+                [ngClass]="{ 'is-invalid': submitted && lf.userName.errors}">
+            <div *ngIf="submitted && lf.userName.errors" class="invalid-feedback">
+                <div *ngIf="lf.userName.errors.required">name is required</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">Email address</label>
+            <input type="email" class="form-control" formControlName="email" aria-describedby="emailHelp"
+                [ngClass]="{ 'is-invalid': submitted && lf.email.errors}">
+            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
+            <div *ngIf="submitted && lf.email.errors" class="invalid-feedback">
+                <div *ngIf="lf.email.errors.required">Email is required</div>
+                <div *ngIf="lf.email.errors.email">Email must be a valid email address</div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Password</label>
+            <input type="password" class="form-control" formControlName="password"
+                [ngClass]="{ 'is-invalid': submitted && lf.password.errors}">
+            <div *ngIf="submitted && lf.password.errors" class="invalid-feedback">
+                <div *ngIf="lf.password.errors.required">Password is required</div>
+            </div>
+        </div>
+        <p class="text-danger mt-3">{{error}}</p>
+        <button type="submit" class="btn btn-primary mt-3 mb-3 d-flex  justify-content-end" (click)="signUp()">Sign
+            Up</button>
+            <p class="text-success mt-3 text-center"><b>{{suc}}</b> </p>
+            <p>Already have an account?<a routerLink="/login"> Login </a></p>
+    </form>
+</div>
