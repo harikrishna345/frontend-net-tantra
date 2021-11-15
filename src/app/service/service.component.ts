@@ -25,14 +25,15 @@ export class ServiceComponent implements OnInit {
       serviceType: ['', Validators.required],
       date: ['', Validators.required],
       slot: ['', Validators.required],
-      ownerName:['',Validators.required],
+      ownerName: ['', Validators.required],
       phone: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
       userId: '',
       addres: ['', Validators.required],
-      expDelDate:'',
+      expDelDate: '',
       createdAt: '',
       updatedAt: '',
+      status:'1'
     });
     var date = new Date();
 

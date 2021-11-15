@@ -1,9 +1,9 @@
 import { FormGroup, Validators, FormBuilder } from '@angular/forms';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { UserService } from '../user.service';
 import { JwtClientService } from '../jwt-client.service';
 import { Router } from '@angular/router';
-
+declare var $:any;
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
@@ -16,11 +16,31 @@ export class SignUpComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router
   ) {}
+  @ViewChild('dTable',{static:false}) dataTable:any;
   signUpForm: FormGroup;
   submitted: any = false;
   error: any = '';
   suc: any;
+  ngAfterViewInit() {
+       $(this.dataTable.nativeElement).DataTable();
+  }
+  settinngs(){
+    $('#exampleModalLong').modal('show');
+  }
+  close(){
+     $('#exampleModalLong').modal('hide');
+  }
   ngOnInit(): void {
+
+    // $(()=> {
+    //   $('#example').DataTable({
+    //     ordering: true,
+    //     searching: true,
+    //     order: [[0, 'asc']], //default
+    //   });
+    // });
+
+
     this.signUpForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
       password: ['', Validators.required],
@@ -52,4 +72,5 @@ export class SignUpComponent implements OnInit {
       });
     }
   }
+  
 }
